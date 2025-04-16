@@ -1,0 +1,218 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+  
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #121212, #1f0030, #300030, #1e0024);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: white;
+}
+  
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+  
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+}
+  
+.musicContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  position: relative;
+}
+  
+.music {
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 1px rgba(255, 20, 147, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+.music::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff1493, #9932cc);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+  
+.music:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 20, 147, 0.2);
+}
+  
+.music:hover::before {
+  transform: scaleX(1);
+}
+  
+.music h3 {
+  color: white;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: inline-block;
+}
+  
+.music h3::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff1493, #ff69b4);
+  transition: width 0.3s ease;
+}
+  
+.music:hover h3::after {
+  width: 100%;
+}
+  
+
+.custom-player {
+  width: 100%;
+  background: rgba(15, 15, 15, 0.6);
+  border-radius: 10px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  gap: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+  
+.music:hover .custom-player {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25), 0 0 8px rgba(255, 20, 147, 0.2);
+  border-color: rgba(255, 20, 147, 0.1);
+}
+  
+.progress-container {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: height 0.2s ease, background 0.3s ease;
+}
+  
+.progress-container:hover {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.15);
+}
+  
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #ff1493, #9932cc);
+  position: absolute;
+  border-radius: 10px;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
+}
+  
+.play-pause {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff1493, #9932cc);
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+  
+.play-pause::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+  
+.play-pause:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+}
+  
+.play-pause:active {
+  transform: scale(0.95);
+}
+  
+.play-pause:hover::after {
+  opacity: 1;
+}
+  
+.play-pause i {
+  font-size: 18px;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+  
+.player-time {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  min-width: 85px;
+  text-align: right;
+  transition: color 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+  
+.music:hover .player-time {
+  color: rgba(255, 255, 255, 0.9);
+}
+  
+ 
+@media (max-width: 768px) {
+  .musicContainer {
+    grid-template-columns: 1fr;
+  }
+    
+.music {
+    padding: 1.2rem;
+}
+    
+.music h3 {
+    font-size: 1.2rem;
+  }
+}
+  
+
